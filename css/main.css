@@ -1,0 +1,505 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500&display=swap');
+
+:root {
+  --color-primary: hsl(169, 25%, 70%);
+  --color-primary-light: hsl(169, 25%, 85%);
+  --color-primary-dark: hsl(169, 25%, 55%);
+
+  --color-secondary: hsl(210,30%,68%);
+  --color-secondary-light: hsl(210,30%,83%);
+  --color-secondary-dark: hsl(210,30%,53%);
+
+  --color-accent: hsl(220,44%,38%);
+  --color-accent-light: hsl(220,44%,58%);
+  --color-accent-dark: hsl(220,44%,18%);
+
+  --color-accent2: hsl(263, 40%, 34%);
+  --color-accent2-light: hsl(263, 40%, 54%);
+  --color-accent2-dark: hsl(263, 40%, 14%);
+
+  --color-accent3: hsl(179, 30%, 37%);
+  --color-accent3-light: hsl(179, 30%, 57%);
+  --color-accent3-dark: hsl(179, 30%, 17%);
+
+  --color-accent4: hsl(0, 86%, 30%);
+  --color-accent4-light: hsl(0, 86%, 50%);
+  --color-accent4-dark: hsl(0, 86%, 10%);
+
+  --light:hsl(47,100%,80%);
+
+  --color-grey-15: hsl(0, 0%, 15%);
+  --color-grey-30: hsl(0, 0%, 30%);
+  --color-grey-45: hsl(0, 0%, 45%);
+  --color-grey-60: hsl(0, 0%, 60%);
+  --color-grey-75: hsl(0, 0%, 75%);
+  --color-grey-90: hsl(0, 0%, 90%);
+  
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: Raleway, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.5;
+  min-width: 400px;
+}
+body #instructions.active{
+  min-height: 100vh;
+  background-color: var(--color-accent4-dark);
+}
+body #actors.active{
+  min-height: 100vh;
+  background-color: var(--color-accent-dark);
+}
+body #media.active{
+  min-height: 100vh;
+  background-color: var(--color-accent3-dark);
+}
+
+/*******************
+  header and search
+*******************/
+
+body header {
+  background-color: var(--color-accent2-dark);
+  color: hsl(20, 40%, 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 15vh;
+  font-size: 1rem;
+  border-bottom: 0.4rem solid black;
+  position:sticky;
+  width:100vw;
+  top:0;
+  z-index: 200;
+}
+header h1,
+header form{
+  padding: 1rem;
+}
+header h1 {
+  text-shadow: 0 0 0 transparent;
+  font-size: clamp(40px,10vw, 5rem);
+  min-width: 400px;
+  margin:auto;
+  text-align: center;
+  z-index: 100;
+  transition:text-shadow 1s;
+  line-height: 1.3;
+}
+header h1:hover {
+  text-shadow: 0 0 12px var(--light);
+  cursor: pointer;
+}
+header form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+h3{
+  position:absolute;
+  background: linear-gradient(to top, transparent,transparent 25%, var(--color-accent2-light) 25%, var(--color-accent2-dark) 60%, var(--color-accent2-dark));
+  color:var(--color-accent2-dark);
+  text-align: center;
+  opacity:0;
+  font-size: min(5rem,10vw);
+  padding: 1rem;
+  transform:skewX(-65deg) rotateX(60deg) translate(4.05rem,1.85rem);
+  border-bottom-right-radius: 100px;
+  transition:opacity 1s linear;
+  line-height: 1.3;
+  /* transform:skewX(-65deg) rotateX(60deg) translate(4rem,1.85rem); */
+}
+header h1:hover + h3{
+  opacity:0;
+}
+#search {
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.25rem 1rem;
+  font-family: Raleway, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  min-width: 30ch;
+}
+#search:focus{
+  outline:none;
+}
+#btnSearch .iconic {
+  height: 22px;
+  width: 22px;
+}
+#btnSearch .iconic * {
+  stroke: hsl(20, 10%, 60%);
+  fill: hsl(20, 10%, 30%);
+}
+#btnSearch.pulse {
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: 0;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: backwards;
+}
+#btnSearch {
+  border-radius: 0.5rem;
+  margin-left: -2.2rem;
+  border: none;
+  background-color: white;
+}
+
+/*******************
+  content area
+*******************/
+
+#instructions {
+  display: none;
+}
+#actors {
+  display: none;
+}
+#media {
+  display: none;
+}
+#instructions.active{
+  display: block;
+}
+#instructions.active .content{
+  display:flex;
+  flex-direction: column;
+  width:max(400px,70%);
+  align-items: center;
+  margin:auto;
+}
+#instructions p{
+  margin:0 1rem 1rem;
+  padding:1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  font-style: italic;
+  min-width: 370px;
+  text-align: center;
+}
+.logo{
+  margin-top:10rem;
+}
+.logo svg{
+  transform: scale(2);
+  padding:1rem;
+  margin:5rem 40vw;
+}
+#actors.active,
+#media.active{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.actor,
+.list{
+  display: flex;
+  border:4px solid var(--color-secondary-dark);
+  border-radius: 5px;
+  background-color: var(--color-secondary-light);
+  margin:1rem;
+  padding:.7rem 1rem;
+  width:370px;
+  transform:translateY(0px);
+  box-shadow: 0 0 0 transparent;
+  transition:transform 0.5s, box-shadow 0.5s;
+}
+.list{
+  flex-direction: column;
+  width:300px;
+  background-color: var(--color-primary-light);
+  border:4px solid var(--color-primary-dark);
+}
+.actor:hover,
+.list:hover{
+  transform:translateY(-15px);
+  box-shadow: 3px 15px 25px black;
+  cursor: pointer;
+}
+.actor>div{
+  display:flex;
+  align-items: center;
+  flex:50% 1 1;
+}
+img{
+  width:100%;
+  border:4px solid #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 20px #fff;
+}
+.actor div+div{
+  display:flex;
+  flex-direction: column;
+  font-weight: bold;
+  flex:50% 1 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  color:var(--color-grey-15);
+}
+.list div+div{
+  display:flex;
+  flex-direction: column;
+  font-weight: bold;
+  flex:50% 1 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 0;
+  color:var(--color-grey-15);
+}
+.actor div>p:first-child{
+  font-size:1.5rem;
+  flex-grow: 1;
+  padding:0;
+  align-self: flex-start;
+}
+.actor div>p:not(first-child){
+  font-size:1.1rem;
+  align-self: flex-end;
+  padding:0 .5rem .5rem 0;
+}
+.list div>p:first-child{
+  font-size:1.4rem;
+  flex-grow: 1;
+  padding:0;
+  align-self: flex-start;
+}
+.list div>p:not(first-child){
+  font-size:1.2rem;
+  align-self: flex-end;
+}
+.label_actor,
+.label_media{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width:100%;
+  margin-bottom: 1.5rem;
+}
+.media1,
+.media2,
+.actor1,
+.actor2{
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.actor1,
+.media2{
+  color:var(--color-secondary-light);
+  border-top: 0 solid black;
+  border-left: 35px solid black;
+  border-right: 35px solid black;
+  border-bottom: 65px solid var(--color-accent-dark);
+  height: 0;
+  transition:color 1s;
+  text-shadow: 3px 2px 0 hsl(220, 44%,5%);
+}
+.media2{
+  color:var(--color-primary-light);
+  border-bottom: 65px solid var(--color-accent3-dark);
+}
+.actor1:hover,
+.media2:hover{
+  color:#fff;
+}
+.media1,
+.actor2{
+  color:var(--color-grey-30);
+  border-top: 0 solid black;
+  border-left: 35px solid black;
+  border-right: 35px solid black;
+  border-bottom: 65px solid hsl(0, 0%, 8%);
+  height: 0;
+  transition:color 1s;
+}
+.media1:hover{
+  color:var(--color-secondary-light);
+  cursor: pointer;
+}
+#instructions h2,
+#actors h2,
+#media h2 {
+  font-weight: 500;
+  font-size: 3rem;
+  color: hsl(20, 10%, 30%);
+  padding: 1rem;
+}
+
+.content p {
+  padding: 0 1rem;
+  margin: 1rem 0;
+  color: hsl(20, 10%, 50%);
+}
+.hide{
+  display:none;
+}
+
+/***********************
+  Effects
+***********************/
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.64;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/************************
+  Media Queries
+************************/
+@media all and (min-width: 600px) {
+  header {
+    font-size: 1.2rem;
+    flex-direction: column;
+  }
+  header h1,
+  header h3{
+    padding: .5rem;
+  }
+  header h1:hover {
+    text-shadow: 0 0 12px var(--light), 4px 0 0 var(--color-accent2);
+    cursor: pointer;
+  }
+  #search {
+    font-size: 1.2rem;
+  }
+  #btnSearch .iconic {
+    height: 32px;
+    width: 32px;
+  }
+  #actors.active,
+  #media.active {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width:100%;
+    margin:auto;
+  }
+  .list{
+    flex-direction: row;
+    width:min(80%, 550px);
+  }
+  .list div+div{
+    padding-left: 1rem;
+  }
+  .actor{
+  width:min(70%, 450px);
+  }
+  .list>div+div>p:first-child{
+    padding:0 0 1rem 0;
+    font-size: 1.7rem;
+  }
+  .list div>p:not(first-child),
+  .actor div>p:not(first-child){
+    font-size:1.3rem;
+  }
+  .actor div>p:first-child{
+    font-size: 1.8rem;
+  }
+  .media1,
+.media2,
+.actor1,
+.actor2{
+  font-size: min(2rem,10vw);
+}
+.actor1,
+.media2{
+  text-shadow: .25rem .15rem 0 hsl(220, 44%,5%);
+}
+  #instructions h2,
+  #actors h2,
+  #media h2 {
+    font-size: 12rem;
+    color: hsla(20, 10%, 30%, 0.32);
+    position: relative;
+    writing-mode: vertical-lr;
+  }
+}
+@media all and (min-width: 1000px) {
+  header {
+    font-size: 2rem;
+  }
+  header h1,
+  header h3{
+  padding: 0;
+  }
+  header h1:hover {
+    text-shadow: 0 0 12px var(--light), 4px 0 0 var(--color-accent2);
+    cursor: pointer;
+  }
+  header h1:hover + h3{
+    opacity:1;
+  }
+  #search {
+    font-size: 1.5rem;
+  }
+  #btnSearch .iconic {
+    height: 42px;
+    width: 42px;
+  }
+  #actors.active{
+    justify-content: space-evenly;
+  }
+  #media.active {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width:100%;
+    margin:auto;
+  }
+  .actor{
+    width:min(70%, 450px);
+  }
+  .list{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content:flex-start;
+    width:27%;
+  }
+  .list>div+div{
+    padding:0;
+  }
+  .list>div+div>p:first-child{
+    font-size: 1.7rem;
+  }
+  .list div>p:not(first-child),
+  .actor div>p:not(first-child){
+    font-size:1.3rem;
+  }
+  .actor div>p:first-child{
+    font-size: 2rem;
+  }
+  .hide{
+    display:none;
+  }
+}
