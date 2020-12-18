@@ -50,6 +50,7 @@ html {
   font-size: 20px;
   line-height: 1.5;
   min-width: 400px;
+  background-color: #000;
 }
 body #instructions.active{
   min-height: 100vh;
@@ -105,7 +106,6 @@ header form {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
 }
 h3{
   position:absolute;
@@ -131,10 +131,14 @@ header h1:hover + h3{
   font-family: Raleway, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 300;
-  min-width: 30ch;
+  min-width: 20ch;
 }
-#search:focus{
+#search:focus,
+#btnSearch:focus{
   outline:none;
+}
+#btnSearch:hover{
+  cursor: pointer;
 }
 #btnSearch .iconic {
   height: 22px;
@@ -158,6 +162,32 @@ header h1:hover + h3{
   margin-left: -2.2rem;
   border: none;
   background-color: white;
+}
+.sort{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color:var(--color-secondary-light);
+  font-size:1rem;
+  font-weight: bolder;
+  margin-left:2rem;
+  font-weight:bold;
+}
+.sort span{
+  color:var(--color-secondary-light);
+  background-color: transparent;
+  padding:.1rem .2rem;
+  border-radius: 15%;
+  margin-top: .2rem;
+  transition:background-color 1s,color 1s;
+  font-weight: 400;
+}
+.sort span:hover{
+  background-color: var(--color-accent2);
+  color:#fff;
+  opacity:1;
+  border-radius: 15%;
+  cursor: pointer;
 }
 
 /*******************
@@ -244,7 +274,8 @@ img{
   border-radius: 3px;
   box-shadow: 0 0 20px #fff;
 }
-.actor div+div{
+.actor div+div,
+.list div+div{
   display:flex;
   flex-direction: column;
   font-weight: bold;
@@ -255,14 +286,7 @@ img{
   color:var(--color-grey-15);
 }
 .list div+div{
-  display:flex;
-  flex-direction: column;
-  font-weight: bold;
-  flex:50% 1 1;
-  align-items: flex-start;
-  justify-content: flex-start;
   padding-left: 0;
-  color:var(--color-grey-15);
 }
 .actor div>p:first-child{
   font-size:1.5rem;
@@ -291,6 +315,9 @@ img{
   grid-template-columns: 1fr 1fr;
   width:100%;
   margin-bottom: 1.5rem;
+}
+.label_actor{
+  grid-template-columns: 1fr;
 }
 .media1,
 .media2,
@@ -350,10 +377,116 @@ img{
 .hide{
   display:none;
 }
+.on{
+  animation: mediaappear 0.3s 0s 1;
+}
+.on2{
+  animation: actorappear 0.3s 0s 1;
+}
+.overlay{
+  position:fixed;
+  background-color: #0007;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:1000;
 
+}
+.shape{
+  display:flex;
+  flex-direction: row;
+  width:70%;
+  margin:auto;
+  align-items:center;
+  justify-content: center;
+  position:fixed;
+  top:50%;
+  left:15%;
+}
+.shape p{
+  margin:0.3rem;
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+}
+.c1{
+  animation:jump2 2s 0s infinite ease-in-out;
+  transform-origin: 84px 15px;
+  background-color:#00b3e5;
+  opacity:1;
+}
+.c2{
+  animation:jump 2s 0s infinite ease-in-out;
+  transform-origin: 57px 15px;
+  background-color:#3cbec9;
+  opacity:1;
+}
+.c3{
+  background-color:#90cea1;
+  opacity:1;
+}
+.c4{
+  animation:jump 2s 0s infinite ease-in-out;
+  transform-origin: -27px 15px;
+  background-color:#3cbec9;
+  opacity:1;
+}
+.c5{
+  animation:jump2 2s 0s infinite ease-in-out;
+  transform-origin: -54px 15px;
+  background-color:#00b3e5;
+  opacity:1;
+}
 /***********************
   Effects
 ***********************/
+@keyframes jump{
+  0%{
+    transform:rotateZ(0deg);
+  }
+  50%{
+    transform:rotateZ(1turn);
+  }
+  100%{
+    transform:rotateZ(0deg);
+  }
+}
+@keyframes jump2{
+  0%{
+    transform:rotateZ(0deg);
+  }
+  50%{
+    transform:rotateZ(-1turn);
+  }
+  100%{
+    transform:rotateZ(0deg);
+  }
+}
+@keyframes fade{
+  0%{
+    transform:translateX(0);
+  }
+  100%{
+    transform:translateX(-100%);
+  }
+}
+@keyframes mediaappear{
+  0%{
+    transform:translateX(100%);
+  }
+  100%{
+    transform:translateX(0);
+  }
+}
+@keyframes actorappear{
+  0%{
+    transform:translateX(-100%);
+  }
+  100%{
+    transform:translateX(0);
+  }
+}
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -402,12 +535,26 @@ img{
     width:100%;
     margin:auto;
   }
+  .sort{
+    flex-direction: row;
+  }
+  .sort p{
+    padding:0 .5rem 0 0;
+  }
+  .sort span{
+    padding:0 .5rem;
+    margin-top: 0;
+    font-weight: bold;
+  }
   .list{
     flex-direction: row;
     width:min(80%, 550px);
   }
   .list div+div{
     padding-left: 1rem;
+  }
+  .list img{
+    max-width: 220px;
   }
   .actor{
   width:min(70%, 450px);
@@ -486,6 +633,9 @@ img{
     justify-content:flex-start;
     width:27%;
   }
+  .list img{
+    max-width: 100%;
+  }
   .list>div+div{
     padding:0;
   }
@@ -502,4 +652,5 @@ img{
   .hide{
     display:none;
   }
+  
 }
