@@ -22,7 +22,7 @@ const APP = {
     h1.addEventListener('click', APP.addlistener);
     let input = document.getElementById('search');
     input.value = '';
-    history.pushState({},null,'http://127.0.0.1:5500/#');
+    history.pushState({},null,'#');
     console.log('add history from init');
     APP.hidesortLabel();
     //console.log(location.href);
@@ -133,7 +133,7 @@ const SWITCH = {
               SEARCH.searchpeople();
               window.scrollTo(0,0);
             });
-            history.pushState({},null,`http://127.0.0.1:5500/#${name}/${id}`);
+            history.pushState({},null,`#${name}/${id}`);
             console.log('add history from switchpage');
           }
         })
@@ -360,7 +360,7 @@ const ACTORS = {
       div.addEventListener('click', MEDIA.showmedia);
     });
 
-    history.pushState({},null,`http://127.0.0.1:5500/#${SEARCH.searchedName}`);
+    history.pushState({},null,`#${SEARCH.searchedName}`);
     console.log('add history from showinfo');
     
     //console.log('his +1');
@@ -395,7 +395,7 @@ const MEDIA = {
     });
     let back = document.querySelector('.media1');
     back.addEventListener('click',MEDIA.backToActor);
-    history.pushState({},null,`http://127.0.0.1:5500/#${SEARCH.searchedName}/${id}`);
+    history.pushState({},null,`#${SEARCH.searchedName}/${id}`);
     console.log('add history from showmedia');
     // let alive = document.querySelectorAll('#media div');
     // console.log(alive[3]);
@@ -412,7 +412,7 @@ const MEDIA = {
       actorPage.classList.add('active');
       actorPage.classList.add('on2');
     });
-    history.pushState({},null,`http://127.0.0.1:5500/#${SEARCH.searchedName}`);
+    history.pushState({},null,`#${SEARCH.searchedName}`);
     console.log('add history from backtoactor');
     //console.log(location.pathname);
   }
