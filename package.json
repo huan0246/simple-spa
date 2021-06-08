@@ -4,8 +4,7 @@
   "description": "media and actors query website built by fetch the data from MovieDB through API and single page application technique.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build":""
+    "build":"rm -rf ./dist/* && mkdir ./dist/css && cp ./index.html ./dist/index.html && cp ./css/main.css ./dist/css/main.css & mkdir ./dist/js && cp ./js/main.js ./dist/js/main.js"
   },
   "repository": {
     "type": "git",
