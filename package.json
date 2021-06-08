@@ -1,0 +1,24 @@
+{
+  "name": "assign3-spa-f2020",
+  "version": "1.0.0",
+  "description": "media and actors query website built by fetch the data from MovieDB through API and single page application technique.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buuld":""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huan0246/simple-spa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huan0246/simple-spa/issues"
+  },
+  "homepage": "https://github.com/huan0246/simple-spa#readme",
+  "dependencies": {
+    "netlify-cli": "^3.35.8"
+  }
+}
